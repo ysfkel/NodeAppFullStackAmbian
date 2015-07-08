@@ -13,6 +13,9 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-     "mongoose": "4.0.6"
+     "mongoose": "4.0.6",
+     "mongoose-currency":"0.2.0",
+     "mongoose-big-decimal":"0.0.3"
+     
   }
 }
