@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	h1= title
+	form(action="/add-user",method="post",name="adduser")
+		input#inutUserName(type="text",placeholder="username",name="name")
+		input#inputUserEmail(type="text",placeholder="your email",name="email")
+		input#inputUserPassword(type="password",placeholder="your password",name="password")
+		input(type="submit",value="submit") 
+	
+	
+	
