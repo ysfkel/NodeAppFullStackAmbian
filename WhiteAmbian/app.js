@@ -8,9 +8,11 @@ require('./models/user')
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var admin=require('./routes/admin');
+
+//Require API's
 var apiMealCategory=require('./routes/apiMealCategory');
 var apiMeal=require('./routes/apiMeal');
-
+var apiCuisine=require('./routes/apiCuisine');
 //
 var mongoose=require('mongoose');
 var db=mongoose.connect('mongodb://localhost/mydbtest')
@@ -55,6 +57,7 @@ app.use('/users', users);
 app.use('/admin',admin);
 app.use('/api',apiMealCategory);
 app.use('/api',apiMeal);
+app.use('/api',apiCuisine)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

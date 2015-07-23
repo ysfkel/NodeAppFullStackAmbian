@@ -25,6 +25,7 @@ router.route('/meal')
 	meal.name=req.body.name;
 	meal.price=req.body.price;
 	meal.imageUrl=req.body.imageUrl;
+	meal.mealCategoryId=req.body.mealCategoryId;
 	
 	meal.ingredients=(!!req.body.ingredients && req.body.ingredients.length>0)?req.body.ingredients:null;
 	meal.save(function(err,data){
@@ -60,6 +61,7 @@ router.route('/meal/:id')
 		meal.name=req.body.name;
 		meal.imageUrl=req.body.imageUrl;
 		meal.price=req.body.price;
+		meal.mealCategoryId=req.body.mealCategoryId;
 		meal.ingredients=(!!req.body.ingredients && req.body.ingredients.length>0)?req.body.ingredients:null
 		meal.save(function(err,data){
 			if(err){
