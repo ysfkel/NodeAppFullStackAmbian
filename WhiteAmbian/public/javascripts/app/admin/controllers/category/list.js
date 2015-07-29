@@ -2,9 +2,9 @@ define([
 
 ], function() {
 	'use strict';
-	var controller=function($scope,cuisines){
+	var controller=function($scope,categories){
 		
-		console.log('cuisine',cuisines)
+		console.log('categories',categories)
 		$scope.controller={
 			actions:{}
 		}
@@ -15,12 +15,12 @@ define([
 		}
 		$scope.models={
 				collections:{
-					cuisines:[]
+					categories:[]
 				}
 			}
 			
-		if(!!cuisines){
-			$scope.models.collections.cuisines=cuisines
+		if(!!categories){
+			$scope.models.collections.categories=categories
 				
 			
 		}

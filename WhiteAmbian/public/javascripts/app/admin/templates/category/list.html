@@ -24,8 +24,8 @@
                     </div>
                 </md-toolbar>
 		     <md-list>
-				 <md-subheader><h1>Cuisines</h1></md-subheader>
-			     <md-list-item ng-repeat='item in models.collections.cuisines'>
+				 <md-subheader><h1>Categories</h1></md-subheader>
+			     <md-list-item ng-repeat='item in models.collections.categories'>
 					   <md-checkbox ng-model="item.state" ng-change="controllerActions.itemDeleteStatusChanged(item.AdvertisementId,item.state)" aria-label="Checkbox 1">
                         </md-checkbox>
 						  <div class="md-list-item-text">

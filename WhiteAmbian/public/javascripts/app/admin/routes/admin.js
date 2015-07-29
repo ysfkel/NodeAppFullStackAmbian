@@ -36,6 +36,32 @@ define(['app/modules/app','ui-router'
 			}
 		})
 		
+		//CATEGORY
+			.state('category',{
+			abtract:true,
+			templateUrl:'/javascripts/app/admin/templates/layout.html'
+		})
+		.state('category.list',{
+			url:'/category/list',
+				views:{
+					'view-container':viewResources.category.list
+				}
+			
+		})
+		.state('category.add',{
+			url:'/category/add',
+			views:{
+					'view-container':viewResources.category.add
+			}
+			
+		})
+		.state('category.update',{
+			url:'/category/update/:id'
+			,views:{
+				'view-container':viewResources.category.update
+			}
+		})
+		
 		
 		     $urlRouterProvider.otherwise("/notfound");
 			

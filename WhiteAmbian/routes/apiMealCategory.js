@@ -18,6 +18,8 @@ router.route('/mealCategory')
   
 })
 
+
+
 .post(function(req,res){
   
   var category=new MealCategory();
@@ -33,6 +35,57 @@ router.route('/mealCategory')
   })
   
 })
+
+router.route('/mealCategory/:id')
+
+.get(function(req,res){
+	var id=req.params.id;
+	MealCategory.findById(id,function(err,doc){
+		if(err){
+			return res.send(500,err);
+		}
+		return res.json(doc);
+	})
+})
+
+.put(function(req,res){
+		console.log('NODE: PUT ID')
+	var id=req.params.id;
+	
+	  MealCategory.findById(id,function(err,category){
+		  
+		  if(err){
+			  return res.send(500,err)
+		  }
+
+		  category.name=req.bod.name;
+     category.description=req.body.description;
+      category.imageUrl=req.body.imageUrl;
+		  category.save(function(err,data){
+			  if(err){
+				  return res.send(500,err);
+			  }
+			  return res.json(data);
+		  })
+		  
+	  })
+	
+})
+
+
+
+.delete(function(req,res){
+	  var id=req.params.id;
+
+	  MealCategory.remove({_id:id},function(err,doc){
+	
+		  if(err){
+			  return res.send(500,err);
+		  }
+		  return res.json(doc.result)
+	  })
+})
+
 
 
 module.exports = router;

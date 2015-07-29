@@ -36,7 +36,7 @@ define(['app/modules/app'],function(app){
     }
 
     Repository.prototype.add = function (entity) {
-  
+         console.log('REPOS:',this.repo)
         return this.repo.save(entity);
     }
     
