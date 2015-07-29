@@ -8,7 +8,7 @@ var Cuisine=mongoose.model('Cuisine');
 router.route('/cuisine')
 
 .get(function(req,res){
-	
+		console.log('NODE: GET ALL')
 	Cuisine.find(function(err,doc){
 		if(err){
 			return res.send(500,err)
@@ -39,9 +39,7 @@ router.route('/cuisine')
 router.route('/cuisine/:id')
 
 .get(function(req,res){
-	
 	var id=req.params.id;
-	
 	Cuisine.findById(id,function(err,doc){
 		if(err){
 			return res.send(500,err);
@@ -51,7 +49,7 @@ router.route('/cuisine/:id')
 })
 
 .put(function(req,res){
-	
+		console.log('NODE: PUT ID')
 	var id=req.params.id;
 	
 	  Cuisine.findById(id,function(err,cuisine){

@@ -1,0 +1,41 @@
+extends layoutAdmin
+
+block content
+
+	h2=title
+	p Welcome to #{title}
+	
+	#wrapper
+		#userInfo
+			h2 User Info
+			p
+				strong Name:
+				span#name
+				br
+				strong Email:
+				span#email
+	
+		h2 User List
+		#userList
+			table
+				thead
+					th UserName
+					th Email
+					th Delete?
+				tbody
+		h2 Add User
+		#addUser
+			fieldset
+				input#inputUserName(type='text',placeholder='Username')
+				br
+				input#inputUserEmail(type='text',placeholder='Email')
+				br
+				input#inputUserPassword(type='text',placeholder='password')
+				br
+				button#btnAddUser Add User
+				
+				
+				
+				
+				
+		

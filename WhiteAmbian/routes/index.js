@@ -7,6 +7,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/admin2',function(req,res,next){
+  res.render('admin2',{title:'Admin'})
+})
+
+router.get('/admin',function(req,res,next){
+  res.render('admin',{title:'admin'})
+})
+
+router.get('/admi')
+
 router.get('/about',function(req,res,next){
   res.render('about',{title:'About White Ambian'})
 })
