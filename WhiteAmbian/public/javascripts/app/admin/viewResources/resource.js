@@ -46,6 +46,8 @@ define([
 			controller:categoryUpdateController,
 			resolve:{
 				category:dataResource.category.item
+				,cuisines:dataResource.cuisine.collection
+				,categories:dataResource.category.collection
 			}
 		},
 		update:{
@@ -53,6 +55,8 @@ define([
 			controller:categoryUpdateController,
 			resolve:{
 				category:dataResource.category.item
+				,cuisines:dataResource.cuisine.collection
+				,categories:dataResource.category.collection
 			}
 		}
 	}

@@ -14,7 +14,7 @@
                             <div class="md-ripple-container"></div>
                         </button>
                   
-                        <a class="md-icon-button md-button md-default-theme" ui-sref="category.add">
+                        <a class="md-icon-button md-button md-default-theme" ui-sref="meal.add">
                             Add
                         </a>
 
@@ -25,11 +25,11 @@
                 </md-toolbar>
 		     <md-list>
 				 <md-subheader><h1>Categories</h1></md-subheader>
-			     <md-list-item ng-repeat='item in models.collections.categories'>
+			     <md-list-item ng-repeat='item in models.collections.meals'>
 					   <md-checkbox ng-model="item.state" ng-change="controllerActions.itemDeleteStatusChanged(item.AdvertisementId,item.state)" aria-label="Checkbox 1">
                         </md-checkbox>
 						  <div class="md-list-item-text">
-                            <a ui-sref="category.update({id:item._id})">
+                            <a ui-sref="meal.update({id:item._id})">
                                 <h3>{{item.name}}</h3>
 
                             </a>

@@ -25,11 +25,6 @@ define([
 			
 		}
 		
-		
-		
-		$scope.controller.actions.save=function(valid){
-			console.log('form is valid',valid)
-		}
 	}
 	
 	return controller;

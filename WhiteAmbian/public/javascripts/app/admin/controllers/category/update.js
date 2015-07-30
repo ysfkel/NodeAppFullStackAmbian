@@ -4,18 +4,38 @@ define([
 	   Repository
 ) {
 	'use strict';
-	var controller=function($scope,category,categoryRepository,$state){
+	var controller=function($scope,cuisines,category,categories,categoryRepository,$state){
 		
-		console.log('category',category)
+		console.log('category',category,cuisines)
 		$scope.controller={
-			actions:{}
+			actions:{},
+			localActions:{}
 		}
+
 		$scope.form={
 			data:{
 				
+			},
+			resources:{
+				cuisines:cuisines
+			},
+			temp:{
+				categories:[]
 			}
 		}
-     $scope.form.data.cuisine=(!!category)?category:{};
+		
+			$scope.models={
+				collections:{
+					categories:[]
+				}
+			}
+			
+		if(!!categories){
+			$scope.models.collections.categories=categories
+				
+			
+		}
+     $scope.form.data.category=(!!category)?category:{};
 
 		var changeView=function(){
 			$state.go('category.list')
@@ -37,6 +57,39 @@ define([
 			}
 			
 		}
+		
+		//
+		$scope.controller.actions.categoryState_change = function (data, checkedState) {
+            if (!!data) {
+                var key = data._id;
+				console.log (data, checkedState)
+                if (!!checkedState) {
+
+                  $scope.controller.localActions.addToCollection($scope.form.temp.categories, data, key);
+                } else {
+                 $scope.controller.localActions.removeFromCollection($scope.form.temp.categories, data, key)
+                }
+            }
+
+        }
+		//
+		//
+		$scope.controller.localActions.addToCollection = function (collection, item, key) {
+            collection.push({ key: key, value: item });
+  console.log('collection', collection)
+        }
+        $scope.controller.localActions.removeFromCollection = function (collection, item, key) {
+
+            angular.forEach(collection, function (data, i) {
+                if (data.key === key) {
+                    collection.splice(i, 1)
+  console.log('collection r', collection)
+                }
+            });
+
+        }
+		
+		//
 	}
 	
 	return controller;

@@ -1,21 +1,140 @@
 <div>
 	<md-content>
-		<md-card>
-		    <md-card-content>
 			          <form name="categoryForm" ng-submit="controller.actions.save(categoryForm.$valid)" novalidate>
-					 <md-list>
-				      <md-subheader><h1>Add / Update Category</h1></md-subheader>
+						  <div layout="row" layout-sm="column">
+							  <md-card flex>
+		    <md-card-content>
+				     <md-subheader><h1>Add / Update Category</h1></md-subheader>
+							   <md-list flex>
+				 
+					  <md-list-item>
+					      <md-input-container>
+							   <label for=""  >Filter cuisines</label>
+						      <input type="text" ng-model="cuisine_search" >
+							  </md-input-container>
+					  </md-list-item>
+					    <md-list-item>
+				        
+						  <md-input-container>
+							
+						         <md-checkbox ng-repeat="item in form.resources.cuisines | filter:cuisine_search" ng-model="item.Selected"  arial-label="item.name" ng-change="controller.actions.categoryState_change(item,item.Selected)">
+						         <md-icon md-svg-icon=""></md-icon>
+								 {{item.name}}
+							 </md-checkbox>
+					
+						  </md-input-container>
+					  </md-list-item>
+					 </md-list>
+					 		</md-card-content>	
+		</md-card>
+							  
+					<md-card flex>
+		    <md-card-content>		  
+							  	 		 <md-list flex>
 					  <md-list-item>
 				        
 						  <md-input-container>
-							    <label for=""  ng-require="true">Cuisine name</label>
+							    <label for=""  ng-require="true">Category name</label>
 						      <input type="text" ng-model="form.data.category.name" >
 						  </md-input-container>
 					  </md-list-item>
 					  <md-list-item>
 				        
 						  <md-input-container>
-							    <label for=""  ng-require="true">Cuisine name</label>
+							    <label for=""  ng-require="true">Description</label>
+						       <textarea name="description" class="fo" ng-model="form.data.category.description"></textarea>
+						  </md-input-container>
+					  </md-list-item>
+					       <md-list-item>
+                            <div layout="row" layout-sm="row" layout-padding>
+                                <md-button type="submit" class="md-raised md-primary" ng-disabled="false" flex="66">Save</md-button>
+                            </div>
+                        </md-list-item>
+				 </md-list>
+				 		</md-card-content>	
+		</md-card>
+				<md-card flex>
+		    <md-card-content>
+						            <md-toolbar class="demo-toolbar background-white border-gray radius-2" style="">
+                    <div class="md-toolbar-tools background-white">
+                        <md-checkbox ng-model="state" ng-change="controllerActions.checkAll(state)" aria-label="Checkbox 1">
+
+                        </md-checkbox>
+
+                        <button class="md-icon-button md-button md-default-theme active" aria-label="View Source" ng-class="{ active: demoCtrl.$showSource }" ng-click="controllerActions.deleteItems($event)" ng-disabled="deleteItemsPending.length==0">
+
+                            <ng-md-icon icon="delete" style="fill:{{fill.remove}}" size="35"></ng-md-icon>
+                            <div class="md-ripple-container"></div>
+                        </button>
+                  
+                        <a class="md-icon-button md-button md-default-theme" ui-sref="category.add">
+                            Add
+                        </a>
+
+
+                        <span flex=""></span>
+                
+                    </div>
+                </md-toolbar>
+		     <md-list flex>
+				 <md-subheader><h1>Categories</h1></md-subheader>
+			     <md-list-item ng-repeat='item in models.collections.categories'>
+					   <md-checkbox ng-model="item.state" ng-change="controllerActions.itemDeleteStatusChanged(item.AdvertisementId,item.state)" aria-label="Checkbox 1">
+                        </md-checkbox>
+						  <div class="md-list-item-text">
+                            <a ui-sref="category.update({id:item._id})">
+                                <h3>{{item.name}}</h3>
+
+                            </a>
+                        </div>
+			    </md-list-item>
+			 </md-list>
+				</md-card-content>
+				</md-card>
+						  </div>
+					
+			     </form>
+
+	</md-content>
+</div>
+
+<!--
+<div>
+	<md-content>
+		<md-card>
+		    <md-card-content>
+			          <form name="categoryForm" ng-submit="controller.actions.save(categoryForm.$valid)" novalidate>
+					 <md-list>
+				      <md-subheader><h1>Add / Update Category</h1></md-subheader>
+					  <md-list-item>
+					      <md-input-container>
+							   <label for=""  >Filter cuisines</label>
+						      <input type="text" ng-model="cuisine_search" >
+							  </md-input-container>
+					  </md-list-item>
+					    <md-list-item>
+				        
+						  <md-input-container>
+							  
+							 <md-radio-group>
+						         <md-radio-button ng-repeat="item in form.resources.cuisines | filter:cuisine_search" ng-value="item._id" arial-label="item.name">
+						         <md-icon md-svg-icon=""></md-icon>
+								 {{item.name}}
+							 </md-radio-button>
+							 </md-radio-group>
+						  </md-input-container>
+					  </md-list-item>
+					  <md-list-item>
+				        
+						  <md-input-container>
+							    <label for=""  ng-require="true">Category name</label>
+						      <input type="text" ng-model="form.data.category.name" >
+						  </md-input-container>
+					  </md-list-item>
+					  <md-list-item>
+				        
+						  <md-input-container>
+							    <label for=""  ng-require="true">Description</label>
 						       <textarea name="description" class="fo" ng-model="form.data.category.description"></textarea>
 						  </md-input-container>
 					  </md-list-item>
@@ -29,4 +148,4 @@
 			</md-card-content>	
 		</md-card>
 	</md-content>
-</div>
+</div>-->

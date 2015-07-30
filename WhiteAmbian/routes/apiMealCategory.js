@@ -21,14 +21,17 @@ router.route('/mealCategory')
 
 
 .post(function(req,res){
-  
+
   var category=new MealCategory();
-  category.name=req.bod.name;
+
+  category.name=req.body.name;
   category.description=req.body.description;
   category.imageUrl=req.body.imageUrl;
+  
   //category.meals=(!!req.body.meals && req.body.meals.length>0)?req.body.meals:null
   category.save(function(err,data){
     if(err){
+      
       return res.send(500,err);
     }
     res.json(data);
@@ -58,7 +61,7 @@ router.route('/mealCategory/:id')
 			  return res.send(500,err)
 		  }
 
-		  category.name=req.bod.name;
+		  category.name=req.body.name;
      category.description=req.body.description;
       category.imageUrl=req.body.imageUrl;
 		  category.save(function(err,data){
