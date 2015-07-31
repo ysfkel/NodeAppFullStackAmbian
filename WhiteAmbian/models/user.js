@@ -11,19 +11,19 @@ var userSchema=new mongoose.Schema({
 	dateCreated:{type:Date,default:Date.now}
 });
 
-
-var cuisineSchema=new mongoose.Schema({
-	name:String,
-	mealCategories:[{type:mongoose.Schema.Types.ObjectId,ref:'MealCategory'}]
-	
-})
-
 var mealCategorySchema=new mongoose.Schema({
 	name:String,
 	description:String,
 	imageUrl:String
 	//,meals:[mealSchema]
 });
+var cuisineSchema=new mongoose.Schema({
+	name:String,
+	mealCategories:[{type:mongoose.Schema.Types.ObjectId,index:true,ref:'MealCategory'}]
+	
+})
+
+
 
 var mealIngredientSchema=new mongoose.Schema({
 	name:String

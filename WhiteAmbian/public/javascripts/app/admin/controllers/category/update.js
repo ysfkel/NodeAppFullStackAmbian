@@ -45,13 +45,17 @@ define([
 			
 			var repo=new Repository(categoryRepository);
 			
+				var cuisines= getValues($scope.form.temp.categories,'_id')
+				
+				$scope.form.data.cuisines=(!!cuisines && cuisines.length>0)?cuisines:null;
+			
 			if(!!$scope.form.data.category._id){
 				var id=$scope.form.data.category._id;
-				repo.update(id,$scope.form.data.category).$promise.then(function(data){
+				repo.update(id,$scope.form.data).$promise.then(function(data){
 			   changeView();
 			})
 			}else{
-				repo.add($scope.form.data.category).$promise.then(function(data){
+				repo.add($scope.form.data).$promise.then(function(data){
 			   changeView();
 			})
 			}
@@ -76,19 +80,29 @@ define([
 		//
 		$scope.controller.localActions.addToCollection = function (collection, item, key) {
             collection.push({ key: key, value: item });
-  console.log('collection', collection)
         }
         $scope.controller.localActions.removeFromCollection = function (collection, item, key) {
 
             angular.forEach(collection, function (data, i) {
                 if (data.key === key) {
                     collection.splice(i, 1)
-  console.log('collection r', collection)
                 }
             });
 
         }
 		
+	   var getValues = function (items, key) {
+
+            var itemsValues = [];
+         var l=null;
+            for (var i = 0; l = items.length, i < l; i++) {
+                var id = items[i].value[key];
+                itemsValues.push(id);
+
+            }
+            return itemsValues;
+
+        }
 		//
 	}
 	

@@ -3,36 +3,34 @@ var router=express.Router();
 
 var mongoose=require('mongoose');
 var Cuisine=mongoose.model('Cuisine');
-
+var Repo=require('../repository/cuisineRepo')
 
 router.route('/cuisine')
 
 .get(function(req,res){
-		console.log('NODE: GET ALL')
-	Cuisine.find(function(err,doc){
-		if(err){
-			return res.send(500,err)
+
+    var callback=function(data){
+		if(!!data.error){
+			return res.send(data.error,data.message);
 		}
-		
-		return res.json(doc)
-		
-	})
+		return res.json(data);
+	}
+	var repo= new Repo.Repository(Cuisine)
+    repo.getAll(callback);
 })
 
 .post(function(req,res){
-	
+
 	var cuisine=new Cuisine();
 	cuisine.name=req.body.name;
-	
-	cuisine.save(function(err,data){
-		if(err){
-			return res.send(500,err);
-		}
 
+	new Repo.Repository(Cuisine).add(cuisine,function(data){
+		if(!!data.error){
+			return res.send(data.error,data.message);
+		}
 		return res.json(data);
 	})
-	
-	
+
 })
 
 
@@ -40,34 +38,30 @@ router.route('/cuisine/:id')
 
 .get(function(req,res){
 	var id=req.params.id;
-	Cuisine.findById(id,function(err,doc){
-		if(err){
-			return res.send(500,err);
+	new Repo.Repository(Cuisine).getById(id,function(data){
+		if(!!data.error){
+			return res.send(data.error,data.message);
 		}
-		return res.json(doc);
+		return res.json(data);
 	})
 })
 
 .put(function(req,res){
-		console.log('NODE: PUT ID')
 	var id=req.params.id;
 	
-	  Cuisine.findById(id,function(err,cuisine){
-		  
-		  if(err){
-			  return res.send(500,err)
-		  }
 
-		  cuisine.name=req.body.name;
-		  cuisine.mealCategories=(!!req.mealCategories && req.body.mealCategories.length>0)?req.body.mealCategories:null;
-		  cuisine.save(function(err,data){
-			  if(err){
-				  return res.send(500,err);
-			  }
-			  return res.json(data);
-		  })
-		  
-	  })
+	var setProperties=function(cuisine){
+		cuisine.name=req.body.name;
+        cuisine.mealCategories=(!!req.mealCategories && req.body.mealCategories.length>0)?req.body.mealCategories:null;
+		return cuisine;
+	}
+	new Repo.Repository(Cuisine).update(id,setProperties,function(data){
+		
+		if(!!data.error){
+			return res.send(data.error,data.message);
+		}
+		return res.json(data);
+	})
 	
 })
 
@@ -76,13 +70,13 @@ router.route('/cuisine/:id')
 .delete(function(req,res){
 	  var id=req.params.id;
 
-	  Cuisine.remove({_id:id},function(err,doc){
-	
-		  if(err){
-			  return res.send(500,err);
-		  }
-		  return res.json(doc.result)
-	  })
+	 new Repo.Repository(Cuisine).remove(id,function(data){
+		
+		if(!!data.error){
+			return res.send(data.error,data.message);
+		}
+		return res.json(data.result);
+	})
 })
 
 module.exports=router;
