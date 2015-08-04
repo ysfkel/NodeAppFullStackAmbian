@@ -6,7 +6,7 @@ define([
 	'use strict';
 	var controller=function($scope,cuisines,category,categories,categoryRepository,$state){
 		
-		console.log('category',category,cuisines)
+
 		$scope.controller={
 			actions:{},
 			localActions:{}
@@ -45,9 +45,10 @@ define([
 			
 			var repo=new Repository(categoryRepository);
 			
-				var cuisines= getValues($scope.form.temp.categories,'_id')
+				var cuisines=getValues($scope.form.temp.categories)
 				
 				$scope.form.data.cuisines=(!!cuisines && cuisines.length>0)?cuisines:null;
+				console.log('	$scope.form.data.cuisines',	$scope.form.data.cuisines)
 			
 			if(!!$scope.form.data.category._id){
 				var id=$scope.form.data.category._id;
@@ -91,7 +92,7 @@ define([
 
         }
 		
-	   var getValues = function (items, key) {
+	   var getValueByKey = function (items, key) {
 
             var itemsValues = [];
          var l=null;
@@ -103,6 +104,19 @@ define([
             return itemsValues;
 
         }
+	   var getValues = function (items) {
+
+            var itemsValues = [];
+         var l=null;
+            for (var i = 0; l = items.length, i < l; i++) {
+                var value = items[i].value;
+                itemsValues.push(value);
+
+            }
+            return itemsValues;
+
+        }
+		
 		//
 	}
 	

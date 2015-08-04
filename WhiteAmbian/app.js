@@ -92,3 +92,19 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+
+
+var items=[],
+items2=[];
+
+function addToList(collection,item){
+  collection.push(item);
+}
+
+
+
+
+
+addToList(items,1);
+addToList(items2,2);

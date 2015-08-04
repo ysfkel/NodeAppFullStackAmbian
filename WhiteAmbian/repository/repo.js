@@ -18,6 +18,29 @@ Repository.prototype.getAll = function (callback) {
 	
 }
 
+
+Repository.prototype.getById=function(id,callback){
+	 this.Model.findById(id,function(err,doc){
+		if(err){
+			var error={error:500,message:err}
+			 callback(error);
+		}
+	   callback(doc);
+	})
+}
+
+
+Repository.prototype.getByQuery=function(query,callback){
+	 this.Model.find(query,function(err,doc){
+		if(err){
+			var error={error:500,message:err}
+			 callback(error);
+		}
+	   callback(doc);
+	})
+}
+
+
 Repository.prototype.add=function(data,callback){
 
 	data.save(function(err,doc){
@@ -45,16 +68,6 @@ Repository.prototype.update=function(id,setProperties,callback){
   
 }
 
-
-Repository.prototype.getById=function(id,callback){
-	 this.Model.findById(id,function(err,doc){
-		if(err){
-			var error={error:500,message:err}
-			 callback(error);
-		}
-	   callback(doc);
-	})
-}
 
 Repository.prototype.remove=function(id,callback){
 	  this.Model.remove({_id:id},function(err,doc){

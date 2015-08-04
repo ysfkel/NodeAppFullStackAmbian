@@ -21,9 +21,8 @@ router.route('/cuisine')
 
 .post(function(req,res){
 
-	var cuisine=new Cuisine();
-	cuisine.name=req.body.name;
-
+	var cuisine=new Cuisine(req.body.cuisine);
+ console.log(' cuisine', cuisine)
 	new Repo.Repository(Cuisine).add(cuisine,function(data){
 		if(!!data.error){
 			return res.send(data.error,data.message);
@@ -48,11 +47,11 @@ router.route('/cuisine/:id')
 
 .put(function(req,res){
 	var id=req.params.id;
-	
+	console.log('UPDATING',req.body.cuisine)
 
 	var setProperties=function(cuisine){
-		cuisine.name=req.body.name;
-        cuisine.mealCategories=(!!req.mealCategories && req.body.mealCategories.length>0)?req.body.mealCategories:null;
+		cuisine.name=req.body.cuisine.name;
+        cuisine.mealCategory=(!!req.body.cuisine.mealCategory && req.body.cuisine.mealCategory.length>0)?req.body.cuisine.mealCategory:null;
 		return cuisine;
 	}
 	new Repo.Repository(Cuisine).update(id,setProperties,function(data){

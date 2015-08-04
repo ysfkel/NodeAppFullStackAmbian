@@ -5,6 +5,23 @@
 			          <form name="cuisineForm" ng-submit="controller.actions.save(cuisineForm.$valid)" novalidate>
 					 <md-list>
 				      <md-subheader><h1>Add / Update Cuisine</h1></md-subheader>
+					  		  <md-list-item>
+					      <md-input-container>
+							   <label for=""  >Filter cuisines</label>
+						      <input type="text" ng-model="category_search" >
+							  </md-input-container>
+					  </md-list-item>
+					    <md-list-item>
+				        
+						  <md-input-container>
+							
+						         <md-checkbox ng-repeat="item in form.resources.categories | filter:category_search" ng-model="item.Selected"  arial-label="item.name" ng-change="controller.actions.cuisineState_change(item,item.Selected)">
+						         <md-icon md-svg-icon=""></md-icon>
+								 {{item.name}}
+							 </md-checkbox>
+					
+						  </md-input-container>
+					  </md-list-item>
 					  <md-list-item>
 				        
 						  <md-input-container>

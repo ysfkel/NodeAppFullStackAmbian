@@ -11,19 +11,17 @@ var userSchema=new mongoose.Schema({
 	dateCreated:{type:Date,default:Date.now}
 });
 
+
+var cuisineSchema=new mongoose.Schema({
+	name:String,
+	mealCategory:[{type:mongoose.Schema.Types.ObjectId,ref:'MealCategory'}]
+})
+
 var mealCategorySchema=new mongoose.Schema({
 	name:String,
 	description:String,
 	imageUrl:String
-	//,meals:[mealSchema]
 });
-var cuisineSchema=new mongoose.Schema({
-	name:String,
-	mealCategories:[{type:mongoose.Schema.Types.ObjectId,index:true,ref:'MealCategory'}]
-	
-})
-
-
 
 var mealIngredientSchema=new mongoose.Schema({
 	name:String
@@ -40,7 +38,7 @@ var mealSchema=new mongoose.Schema({
 	imageUrl:String,
 	price:{type:Currency },
 	mealCategoryId:{type:mongoose.Schema.Types.ObjectId,ref:'MealCategory'}, //reference category for this meal
-	ingredients:[mealIngredientSchema]
+	ingredient:[mealIngredientSchema]
 });
 
 
