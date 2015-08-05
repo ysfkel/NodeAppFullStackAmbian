@@ -2,11 +2,15 @@ define([
 	  'app/repos/resource'
 	  ,'app/repos/repo'
 	    ,'app/admin/controllers/cuisine/update','app/admin/controllers/cuisine/list'
-			 ,'app/admin/controllers/category/update','app/admin/controllers/category/list'
+		,'app/admin/controllers/category/update','app/admin/controllers/category/list'
+		,'app/admin/controllers/ingredient/update','app/admin/controllers/ingredient/list'
+		,'app/admin/controllers/meal/update','app/admin/controllers/meal/list'
 	
-],function(dataResource,Repository,cuisineUpdateController,cuisineListController
-    
+],function(dataResource,Repository
+          ,cuisineUpdateController,cuisineListController
 	       ,categoryUpdateController,categoryListController
+		   ,updateIngredientController,listIngredientController
+		   ,updateMealController,listMealController
 ){
 	console.log('dataResource',dataResource.cuisine.collection)
     var cuisine={
@@ -62,10 +66,65 @@ define([
 			}
 		}
 	}
+	//INGREDIENT
+	var ingredient={
+		list:{
+			templateUrl:'/javascripts/app/admin/templates/ingredient/list.html',
+			controller:listIngredientController,
+			resolve:{
+				ingredients:dataResource.ingredient.collection
+			}
+		},
+		add:{
+			templateUrl:'/javascripts/app/admin/templates/ingredient/update.html',
+			controller:updateIngredientController,
+			resolve:{
+				ingredient:dataResource.ingredient.item
+			}
+		}
+		,update:{
+			templateUrl:'/javascripts/app/admin/templates/ingredient/update.html',
+			controller:updateIngredientController ,
+			resolve:{
+				ingredient:dataResource.ingredient.item
+			}
+		}
+	}
+    //meal
+	var meal={
+		list:{
+			templateUrl:'/javascripts/app/admin/templates/meal/list.html',
+			controller:listMealController,
+			resolve:{
+				meals:dataResource.meal.collection
+			}
+		},
+		add:{
+			templateUrl:'/javascripts/app/admin/templates/meal/update.html',
+			controller:updateMealController,
+			resolve:{
+				meal:dataResource.meal.item
+				,ingredients:dataResource.ingredient.collection
+				,cuisines:dataResource.cuisine.collection
+				
+			}
+		}
+		,update:{
+			templateUrl:'/javascripts/app/admin/templates/meal/update.html',
+			controller:updateMealController ,
+			resolve:{
+				meal:dataResource.meal.item
+				,ingredients:dataResource.ingredient.collection
+				,cuisines:dataResource.cuisine.collection
+			}
+		}
+	}
 	
 	
 	return {
 		cuisine:cuisine
 		,category:category
+		,ingredient:ingredient
+		,meal:meal
 	};
 })

@@ -1,0 +1,42 @@
+<div>
+	<md-content>
+	  <md-card>
+	     <md-card-content>
+			            <md-toolbar class="demo-toolbar background-white border-gray radius-2" style="">
+                    <div class="md-toolbar-tools background-white">
+                        <md-checkbox ng-model="state" ng-change="controllerActions.checkAll(state)" aria-label="Checkbox 1">
+
+                        </md-checkbox>
+
+                        <button class="md-icon-button md-button md-default-theme active" aria-label="View Source" ng-class="{ active: demoCtrl.$showSource }" ng-click="controllerActions.deleteItems($event)" ng-disabled="deleteItemsPending.length==0">
+
+                            <ng-md-icon icon="delete" style="fill:{{fill.remove}}" size="35"></ng-md-icon>
+                            <div class="md-ripple-container"></div>
+                        </button>
+                  
+                        <a class="md-icon-button md-button md-default-theme" ui-sref="ingredient.add">
+                            Add
+                        </a>
+
+
+                        <span flex=""></span>
+                
+                    </div>
+                </md-toolbar>
+		     <md-list>
+				 <md-subheader><h1>Cuisines</h1></md-subheader>
+			     <md-list-item ng-repeat='item in models.collections.ingredient'>
+					   <md-checkbox ng-model="item.state" ng-change="controllerActions.itemDeleteStatusChanged(item.AdvertisementId,item.state)" aria-label="Checkbox 1">
+                        </md-checkbox>
+						  <div class="md-list-item-text">
+                            <a ui-sref="ingredient.update({id:item._id})">
+                                <h3>{{item.name}}</h3>
+
+                            </a>
+                        </div>
+			    </md-list-item>
+			 </md-list>
+		 </md-card-content>
+	  </md-card>
+	</md-content>
+</div>

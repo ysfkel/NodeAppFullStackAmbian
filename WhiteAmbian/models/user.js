@@ -37,6 +37,7 @@ var mealSchema=new mongoose.Schema({
 	name:String,
 	imageUrl:String,
 	price:{type:Currency },
+	cuisine:{type:mongoose.Schema.Types.ObjectId,ref:'Cuisine'},
 	mealCategoryId:{type:mongoose.Schema.Types.ObjectId,ref:'MealCategory'}, //reference category for this meal
 	ingredient:[mealIngredientSchema]
 });

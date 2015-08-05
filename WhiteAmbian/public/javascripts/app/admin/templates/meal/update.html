@@ -1,6 +1,8 @@
 <div>
-	<md-content>
-		<md-card>
+	<md-content layput="row">
+        
+        
+		<md-card flex>
 		    <md-card-content>
 			          <form name="mealForm" ng-submit="controller.actions.save(mealForm.$valid)" novalidate>
 					 <md-list>
@@ -12,21 +14,62 @@
 						      <input type="text" ng-model="form.data.meal.name" >
 						  </md-input-container>
 					  </md-list-item>
+					  
 					  <md-list-item>
-				        
+					     <md-select ng-model="item">
+						    <md-option ng-repeat="item in form.resources.cuisines">
+								{{item.name}}
+							</md-option>
+						 </md-select>
+					  </md-list-item>
+					  <md-list-item>
 						  <md-input-container>
 							    <label for=""  ng-require="true">Price</label>
 						      <input type="text" ng-model="form.data.meal.price" >
 						  </md-input-container>
 					  </md-list-item>
-					       <md-list-item>
-                            <div layout="row" layout-sm="row" layout-padding>
+                    <fieldset>
+                       
+					  <md-list-item>
+				
+                            <md-autocomplete md-selected-item="auto.selectedItem"
+                                                          md-search-text-change="auto.searchTextChange(auto.searchText)"
+                                                          md-search-text="auto.searchText"
+                                                          md-selected-item-change="auto.selectedItemChange(item,'name')"
+                                                          md-items="item in form.resources.ingredients | filter:auto.searchText"
+                                                          md-item-text="item.name"
+                                                          md-min-length="0"
+                                                          placeholder="Ingredient">
+                                             <md-item-template>
+                                                 <span md-highlight-text="auto.searchText" md-highlight-flags="^i">{{item.name}}</span>
+                                             </md-item-template>
+                                         </md-autocomplete>
+                                     
+                         <md-button type="button" class="md-raised md-primary" ng-click="controller.actions.add_ingredient()">Add</md-button>
+                   
+					</md-list-item>
+                    <md-list-item>
+                       <div>
+                           <span ng-repeat="item in  form.data.meal.mealIngredients track by $index">{{item}}</span>
+                       </div>
+                    </md-list-item>
+                    
+                      <md-list-item>
+                          <div >
                                 <md-button type="submit" class="md-raised md-primary" ng-disabled="false" flex="66">Save</md-button>
                             </div>
-                        </md-list-item>
+                      </md-list-item>
 				 </md-list>
+                    </fieldset>
 			     </form>
 			</md-card-content>	
 		</md-card>
+        
+        
+        
+        
+      
 	</md-content>
+    
+    
 </div>

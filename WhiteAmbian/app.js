@@ -13,6 +13,7 @@ var admin=require('./routes/admin');
 var apiMealCategory=require('./routes/apiMealCategory');
 var apiMeal=require('./routes/apiMeal');
 var apiCuisine=require('./routes/apiCuisine');
+var apiIngredient=require('./routes/apiIngredient');
 //
 var mongoose=require('mongoose');
 var db=mongoose.connect('mongodb://localhost/mydbtest')
@@ -58,6 +59,7 @@ app.use('/admin',admin);
 app.use('/api',apiMealCategory);
 app.use('/api',apiMeal);
 app.use('/api',apiCuisine)
+app.use('/api',apiIngredient)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

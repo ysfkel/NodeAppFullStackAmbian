@@ -61,7 +61,56 @@ define(['app/modules/app','ui-router'
 				'view-container':viewResources.category.update
 			}
 		})
-		
+		//Ingredient
+		.state('ingredient',{
+			abtract:true,
+			templateUrl:'/javascripts/app/admin/templates/layout.html'
+		})
+		.state('ingredient.list',{
+			url:'/ingredient/list',
+				views:{
+					'view-container':viewResources.ingredient.list
+				}
+			
+		})
+		.state('ingredient.add',{
+			url:'/ingredient/add',
+			views:{
+					'view-container':viewResources.ingredient.add
+			}
+			
+		})
+		.state('ingredient.update',{
+			url:'/ingredient/update/:id'
+			,views:{
+				'view-container':viewResources.ingredient.update
+			}
+		})
+		//Meal
+		.state('meal',{
+			abtract:true,
+			templateUrl:'/javascripts/app/admin/templates/layout.html'
+		})
+		.state('meal.list',{
+			url:'/meal/list',
+				views:{
+					'view-container':viewResources.meal.list
+				}
+			
+		})
+		.state('meal.add',{
+			url:'/meal/add',
+			views:{
+					'view-container':viewResources.meal.add
+			}
+			
+		})
+		.state('meal.update',{
+			url:'/meal/update/:id'
+			,views:{
+				'view-container':viewResources.meal.update
+			}
+		})
 		
 		     $urlRouterProvider.otherwise("/notfound");
 			

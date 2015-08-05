@@ -1,0 +1,22 @@
+<div>
+	<md-content>
+	    <md-card>
+		   <form name="ingredientForm" ng-submit="controller.actions.save(ingredientForm.$valid)">
+			   <md-card-content>
+		       <md-list>
+			        <md-subheader><h1>Ingredient</h1></md-subheader>
+					<md-list-item>
+					     <md-input-container>
+					          <label for="name">Name</label>
+							  <input type="text" name="" ng-model="form.data.ingredient.name">
+						 </md-input-container>
+					</md-list-item>
+					<md-list-item>
+					    <md-button class="md-raised md-primary">Save</md-button>
+					</md-list-item>
+			   </md-list>
+		   </md-card-content>
+		   </form>
+		</md-card>
+	</md-content>
+</div>
