@@ -16,8 +16,12 @@ var apiCuisine=require('./routes/apiCuisine');
 var apiIngredient=require('./routes/apiIngredient');
 //
 var mongoose=require('mongoose');
-var db=mongoose.connect('mongodb://localhost/mydbtest')
-
+if(process.env.DEV_ENV){
+  console.log('DEV ENV')
+  var db=mongoose.connect('mongodb://localhost/mydbtest')
+}else{
+   var db=mongoose.connect('mongodb://whiteAmbientApp:Qgp_6iyVvCUaKDHQ_MMHC6TZNpONQ_xuI2VmS62A1h0-@ds038888.mongolab.com:38888/whiteAmbientApp')
+}
 
 /* 
 require('./models/models');
@@ -60,6 +64,10 @@ app.use('/api',apiMealCategory);
 app.use('/api',apiMeal);
 app.use('/api',apiCuisine)
 app.use('/api',apiIngredient)
+
+
+//app.use(multer({dest:'./uploads/'}).array('photo'))
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

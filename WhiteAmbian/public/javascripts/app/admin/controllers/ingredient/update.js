@@ -1,7 +1,8 @@
 define([
+	'ngUpload',
 	'app/repos/repo'
-],function(Repository){
-	var controller=function($scope,ingredientRepository,ingredient,$state){
+],function(ngUpload,Repository){
+	var controller=function($scope,Upload,ingredientRepository,ingredient,$state){
 		$scope.form={
 			data:{
 				ingredient:(!!ingredient)?ingredient:{}
@@ -15,6 +16,7 @@ define([
 			$state.go('ingredient.list')
 		}
 		
+ 
 	  $scope.controller.actions.save=function(valid){
 
 		  if(valid===true){

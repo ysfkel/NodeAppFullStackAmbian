@@ -1,12 +1,14 @@
 define([
+	'ngUpload',
      'app/repos/repo'
 	 ,'app/utillity/utillity'
 ], function(
+	ngUpload,
 	   Repository
 	   ,utillity
 ) {
 	'use strict';
-	var controller=function($scope,meal,cuisines,ingredients,mealRepository,$state){
+	var controller=function($scope,meal,Upload,cuisines,ingredients,mealRepository,$state){
 		
 		console.log('meal',meal,cuisines,ingredients)
 		$scope.controller={
@@ -93,6 +95,43 @@ define([
 		   // $scope.auto.searchText='';
 		      console.log('INGREDIENT',$scope.form.data.meal.mealIngredients)
 		}
+		
+		//upload to azure
+		 $scope.$watch('files', function() {  
+         $scope.upload($scope.files);
+       });
+		
+		 $scope.ngUpload={};
+	     $scope.upload = function(files) { 
+         console.log(files)
+   
+           if (files && files.length) {
+        var file = files[0];
+		$scope.file=file;
+        console.log('FILE',file)
+        Upload.upload({
+          url:'api/myfile',// 'api/ingredient',
+          // fields: {
+          //   'user': 'yusuf'
+          // },
+          file: file
+        }).progress(function(evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '% ' +
+          evt.config.file.name);
+        }).success(function(data, status, headers, config) {
+          $scope.image = data;
+          if ($scope.image.uploadError) {
+            $scope.user.uploadError = $scope.image.uploadError;
+            console.log('error on hand');
+          } else {
+           // $scope.user.uploadError = '';
+            
+          }
+        });
+      }
+    };
+	
 			
 	}
 	

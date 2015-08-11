@@ -7,7 +7,10 @@ require.config({
 		'ui-router':'bower_components/angular-ui-router/release/angular-ui-router.min',
 		'ng-material':'bower_components/angular-material/angular-material.min',
 		'ng-animate':'bower_components/angular-animate/angular-animate',
-		'ng-aria':'bower_components/angular-aria/angular-aria.min'
+		'ng-aria':'bower_components/angular-aria/angular-aria.min',
+	    'ngUpload':'bower_components/ng-file-upload/ng-file-upload.min',
+		'ngUploadShim':'bower_components/ng-file-upload/ng-file-upload-shim.min'
+		
 	}
 	,shim:{
 		'angular':{
@@ -17,9 +20,17 @@ require.config({
 		    deps:['angular'],
 			exports:'ng-resource'	
 		},
+		'ngUpload':{
+		    deps:['angular'],
+			exports:'ng-resource'
+		},
 		'ui-router':{
 			deps:['angular'],
-			exports:'ui_router'
+			exports:'ngUpload'
+		},
+		'ngUploadShim':{
+			deps:['angular,ngUpload'],
+			exports:'ngUploadShim'
 		},
 		'ng-material':{
 			deps:['angular','ng-animate'],

@@ -1,6 +1,6 @@
-define(['angular','require','ui-router','ng-material','ng-animate','ng-resource'],function(ng,req,uiRouter,ngAnitmate,ngMaterial,ngResource){
+define(['angular','require','ui-router','ng-material','ng-animate','ng-resource','ngUpload'],function(ng,req,uiRouter,ngAnitmate,ngMaterial,ngResource,ngUpload){
 	
-	return ng.module('appModule',['ui.router','ngMaterial','ngResource']) 
+	return ng.module('appModule',['ui.router','ngMaterial','ngResource','ngFileUpload']) 
 // 	.config(function ($mdThemingProvider, $mdIconProvider) {
 // 
 //                   $mdIconProvider
